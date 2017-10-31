@@ -24,6 +24,12 @@ namespace ApiApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddCors(o => o.AddPolicy("ApiAppCorsPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +40,8 @@ namespace ApiApp
                 app.UseDeveloperExceptionPage();
             }
 
+            // this must be called before app.UseMvc() and others
+            app.UseCors("ApiAppCorsPolicy");
             app.UseMvc();
         }
     }

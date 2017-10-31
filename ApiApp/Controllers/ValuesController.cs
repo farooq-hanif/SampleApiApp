@@ -13,7 +13,7 @@ namespace ApiApp.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "This message is returned from ApiApp." };
+            return new string[] { "This message is from ApiApp." };
         }
 
         // GET api/values/5
